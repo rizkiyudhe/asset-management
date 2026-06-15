@@ -1,20 +1,37 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AssetController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Asset;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
+
+    // Dashboard (Bisa diakses semua role yang login)
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    // Profile Routes (Bawaan Breeze)
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Grouping Routes untuk Admin dan Staff Asset
+    Route::middleware('role:admin,staff_asset')->group(function () {
+        // Resource route untuk Asset
+        Route::resource('assets', AssetController::class);
+
+        // Route khusus untuk Download/Print QR Code
+        Route::get('/assets/{asset}/qr/download', function (Asset $asset) {
+            $path = storage_path('app/public/assets/qrcodes/' . $asset->asset_code . '.svg');
+            return response()->download($path);
+        })->name('assets.qr.download');
+    });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
