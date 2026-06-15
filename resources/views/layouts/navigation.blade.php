@@ -27,7 +27,7 @@
             <h3 class="px-6 mt-6 text-xs text-blue-300 uppercase">Manajemen</h3>
 
             <a class="flex items-center px-6 py-2 mt-4 text-gray-300 transition-colors duration-200 transform hover:bg-blue-800 hover:text-gray-100 rounded-md"
-                href="#">
+                href="{{ route('assets.index') }}" --">
                 {{-- Heroicon: Cube --}}
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -37,7 +37,7 @@
             </a>
 
             <a class="flex items-center px-6 py-2 mt-4 text-gray-300 transition-colors duration-200 transform hover:bg-blue-800 hover:text-gray-100 rounded-md"
-                href="#">
+                href="{{ route('maintenances.index') }}" --">
                 {{-- Heroicon: Wrench --}}
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

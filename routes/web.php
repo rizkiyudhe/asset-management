@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\MaintenanceRecordController;
+use App\Http\Controllers\DisposalRecordController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Asset;
 
@@ -31,6 +33,10 @@ Route::middleware('auth')->group(function () {
             $path = storage_path('app/public/assets/qrcodes/' . $asset->asset_code . '.svg');
             return response()->download($path);
         })->name('assets.qr.download');
+
+        Route::resource('maintenances', MaintenanceRecordController::class)->except(['edit', 'update']);
+
+        Route::resource('disposals', DisposalRecordController::class)->only(['index', 'create', 'store']);
     });
 });
 
