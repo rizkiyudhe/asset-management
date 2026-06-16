@@ -77,12 +77,25 @@
         @if ($role === 'admin')
             <h3 class="px-6 mt-8 text-xs font-semibold text-blue-400 uppercase tracking-wider">Master Data</h3>
 
-            <a class="flex items-center px-6 py-2 mt-4 text-gray-300 transition-colors duration-200 transform hover:bg-blue-800 hover:text-gray-100 rounded-md"
-                href="#">
+            <a class="flex items-center px-6 py-2 mt-4 {{ request()->routeIs('categories.*') ? 'bg-blue-800 text-gray-100' : 'text-gray-300 hover:bg-blue-800 hover:text-gray-100' }} transition-colors duration-200 transform rounded-md"
+                href="{{ route('categories.index') }}">
+                {{-- Heroicon: Tag --}}
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                </svg>
                 <span class="mx-4 text-sm font-medium">Kategori</span>
             </a>
-            <a class="flex items-center px-6 py-2 mt-4 text-gray-300 transition-colors duration-200 transform hover:bg-blue-800 hover:text-gray-100 rounded-md"
-                href="#">
+
+            <a class="flex items-center px-6 py-2 mt-4 {{ request()->routeIs('locations.*') ? 'bg-blue-800 text-gray-100' : 'text-gray-300 hover:bg-blue-800 hover:text-gray-100' }} transition-colors duration-200 transform rounded-md"
+                href="{{ route('locations.index') }}">
+                {{-- Heroicon: Map Pin --}}
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
                 <span class="mx-4 text-sm font-medium">Lokasi</span>
             </a>
         @endif
@@ -91,7 +104,12 @@
         @if (in_array($role, ['admin', 'manager']))
             <h3 class="px-6 mt-8 text-xs font-semibold text-blue-400 uppercase tracking-wider">Laporan</h3>
             <a class="flex items-center px-6 py-2 mt-4 text-gray-300 transition-colors duration-200 transform hover:bg-blue-800 hover:text-gray-100 rounded-md"
-                href="#">
+                href="{{ route('reports.assets') }}">
+                {{-- Heroicon: Document Report --}}
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
                 <span class="mx-4 text-sm font-medium">Report Pendapatan / Aset</span>
             </a>
         @endif
